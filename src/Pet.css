@@ -1,0 +1,8 @@
+.pet {
+  max-width: 250px;
+  text-align: left;
+  border: 4px double black;
+  border-radius: 3px;
+  margin: 3px;
+  padding: 6px;
+}
