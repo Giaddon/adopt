@@ -4,7 +4,9 @@ import './Nav.css'
 const Nav = () => {
   return (
     <nav>
-
+      <p>Pets</p>
+      <p>Wildlife</p>
+      <p>About us</p>
     </nav>
   )
 }
