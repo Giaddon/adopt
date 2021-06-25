@@ -1,8 +1,12 @@
 export interface PetProps {
-  key: any,
+  id: number,
   name: string,
-  age: Number,
+  age: number,
   notes: string,
-  type: string,
+  species: string,
   breed: string,
 } 
+
+export interface PetsContainerProps {
+  pets: PetProps[]
+}

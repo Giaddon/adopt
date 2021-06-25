@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { PetProps } from './types';
 import { API } from './globals';
-import './Home.css';
+import './Pets.css';
 import PetsContainer from './PetsContainer';
 
-const Home = () => {
+const Pets = () => {
   const [pets, setPets] = useState<PetProps[]>([]);
   
   useEffect(() => {
@@ -23,11 +23,11 @@ const Home = () => {
   },[]);
   
   return (
-    <div className="home">
-      <h1 className="title shadowed-text">Shellside Animal Shelter + Adoption</h1>
+    <div className="pets">
+      <h1 className="title shadowed-text">Our Pets</h1>
       <div className="seperator"></div>
-      <p className="summary shadowed-text">The Shellside Animal Shelter has been proudly serving the community's animals and animal lovers since our foundation in 1972. Here you can learn more about the Shelter, see the animals in our care, and perhaps find a new companion for your home.</p> 
-      <p className="summary shadowed-text">Welcome.</p>
+      {/* <p className="summary shadowed-text">The Shellside Animal Shelter has been proudly serving the community's animals and animal lovers since our foundation in 1972. Here you can learn more about the Shelter, see the animals in our care, and perhaps find a new companion for your home.</p>  
+      <p className="summary shadowed-text">Welcome.</p>*/}
       {pets.length > 0
         ? <PetsContainer pets={pets} />
         : <h2>Loading</h2>
@@ -37,4 +37,4 @@ const Home = () => {
   )
 }
 
-export default Home;
+export default Pets;

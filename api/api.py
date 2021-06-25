@@ -1,37 +1,63 @@
 from flask import Flask
+import os
+from flask_sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
 
-DB = {
-  'pets': {
-    '1': {
-        'name': 'Francis Pierre',
-        'type': 'Cat',
-        'breed': 'American Shorthair',
-        'age': '3',
-        'notes' : 'Distillery tumeric mixtape, single-origin coffee try-hard cray quinoa lyft cloud bread sriracha marfa meh. Pop-up blog stumptown taxidermy hot chicken single-origin coffee paleo banjo affogato shaman. Flexitarian four loko neutra schlitz hell of, edison bulb cloud bread. Hella unicorn mlkshk hammock truffaut jianbing chia marfa DIY kogi selvage single-origin coffee.',
-      },
-      '2': {
-        'name': 'Chunks',
-        'type': 'Dog',
-        'breed': 'Samoyed',
-        'age': '4',
-        'notes' : 'I\'m baby plaid butcher actually brooklyn irony everyday carry wolf succulents vaporware tacos crucifix post-ironic mustache migas. Hot chicken bicycle rights cliche, butcher tbh tumeric fixie direct trade cardigan meditation pinterest. La croix cardigan YOLO, vegan raclette dreamcatcher ethical. Wolf quinoa live-edge taiyaki cardigan beard. XOXO humblebrag forage organic. Migas ennui af, affogato stumptown hot chicken photo booth slow-carb yuccie.',
-      },
-      '3': {
-        'name': 'Saint Claire',
-        'type': 'Exotic',
-        'breed': 'Sea Otter',
-        'age': '1',
-        'notes' : 'Craft beer palo santo yuccie kombucha stumptown pour-over, brooklyn gastropub cardigan air plant 8-bit quinoa dreamcatcher shabby chic. Keffiyeh 3 wolf moon asymmetrical, keytar single-origin coffee pabst fingerstache. Post-ironic retro man bun, chambray fixie bicycle rights tbh food truck. Marfa kogi tumblr, williamsburg affogato tousled bespoke flexitarian wayfarers flannel.',
-      },
-  }
-}
+# DB Configuration 
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+app.config['SQLALCHEMY_ECHO'] = False
+app.config['DEBUG_TB_INTERCEPT_REDIRECTS'] = False
+app.config['SQLALCHEMY_DATABASE_URI'] = (
+    os.environ.get('DATABASE_URL', 'postgresql:///adopt'))
+db = SQLAlchemy(app)
+
+# Models
+class Pets(db.Model):
+    __tablename__ = 'pets'
+
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String())
+    age = db.Column(db.Integer())
+    species = db.Column(db.String())
+    breed = db.Column(db.String())
+    notes = db.Column(db.String())
+
+    def __init__(self, name, age, species, breed, notes):
+        self.name = name
+        self.age = age
+        self.species = species
+        self.breed = breed
+        self.notes = notes
+
+    def __repr__(self):
+        return f"<Pet #{self.id}: {self.name}. {self.species}>"
 
 @app.route("/api/v1/pets")
 def get_all_pets():
-    return DB['pets']
+  pets = Pets.query.all()
+  results = [
+    {
+      "id": pet.id,
+      "name": pet.name,
+      "age": pet.age,
+      "species": pet.species,
+      "breed": pet.breed,
+      "notes": pet.notes,
+    } for pet in pets]
+
+  return {"pets": results, "count": len(results)}
 
 @app.route("/api/v1/pets/<pet_id>")
 def get_pet(pet_id):
-    return DB['pets'][pet_id]
+    pet_id = int(pet_id)
+    pet = Pets.query.filter_by(id=pet_id).first()
+    result = {
+      "id": pet.id,
+      "name": pet.name,
+      "age": pet.age,
+      "species": pet.species,
+      "breed": pet.breed,
+      "notes": pet.notes,
+    }
+    return result
