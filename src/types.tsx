@@ -10,3 +10,9 @@ export interface PetProps {
 export interface PetsContainerProps {
   pets: PetProps[]
 }
+
+export interface PetControllerForm {
+  showDogs: boolean,
+  showCats: boolean,
+  showOther: boolean,
+}

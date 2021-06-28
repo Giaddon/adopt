@@ -1,10 +1,10 @@
 import React from 'react';
 import { Route, BrowserRouter, Switch } from 'react-router-dom';
 import './App.css';
-import Home from './Home';
-import Nav from './Nav';
-import Pets from './Pets';
-import Lost from './Lost';
+import Home from './components/Home';
+import Nav from './components/Nav';
+import Pets from './components/Pets';
+import Lost from './components/Lost';
 
 function App() {
   return (
