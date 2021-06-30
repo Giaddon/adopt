@@ -4,6 +4,7 @@ import './App.css';
 import Home from './components/Home';
 import Nav from './components/Nav';
 import Pets from './components/Pets';
+import Add from './components/Add';
 import Lost from './components/Lost';
 
 function App() {
@@ -17,6 +18,9 @@ function App() {
           </Route>
           <Route exact path="/pets">
             <Pets />
+          </Route>
+          <Route exact path="/add">
+            <Add />
           </Route>
           <Route path="*">
             <Lost />

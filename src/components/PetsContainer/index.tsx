@@ -63,6 +63,20 @@ const PetsContainer = () => {
     });
   }
 
+  const petsList = pets.length > 0 ? pets.map(pet => 
+    <Pet
+      key={pet.id}
+      id={pet.id}
+      name={pet.name}
+      age={pet.age}
+      species={pet.species}
+      breed={pet.breed}
+      notes={pet.notes}
+    />)
+    : <h2>No matching pets found.</h2> 
+  
+  const petsContent = isLoading ? <h2>Loading</h2> : petsList
+    
   return (
     <div>
       <form>
@@ -92,21 +106,7 @@ const PetsContainer = () => {
         />
       </form>
       <div className="pets-container">
-        {isLoading
-          ? <h2>Loading</h2>
-          : pets.length > 0
-            ? pets.map(pet => 
-              <Pet
-                key={pet.id}
-                id={pet.id}
-                name={pet.name}
-                age={pet.age}
-                species={pet.species}
-                breed={pet.breed}
-                notes={pet.notes}
-              />)
-            : <h2>No matching pets found.</h2> 
-        }
+        {petsContent}
       </div>
     </div> 
   )

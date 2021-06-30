@@ -1,6 +1,4 @@
-import React, { useState, useEffect } from 'react';
-import { PetProps } from '../../types';
-import { API } from '../../globals';
+import React from 'react';
 import './Pets.css';
 import PetsContainer from '../PetsContainer';
 
