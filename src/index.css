@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Homemade+Apple&display=swap');
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -5,7 +7,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-image: url(img/lighthousesm.jpg);
+  background-image: url(assets/lighthousesm.jpg);
   background-size: cover;
 }
 
@@ -28,6 +30,7 @@ h1, h2, h3 {
   font-size: 42px;
   font-family: 'Homemade Apple', cursive, sans-serif;
   word-spacing: 10px;
+  text-align: center;
 }
 
 .seperator {

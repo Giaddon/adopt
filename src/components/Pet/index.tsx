@@ -1,5 +1,5 @@
 import React from 'react';
-import { PetProps } from '../../types';
+import { PetProps } from '../../utils/types';
 import './Pet.css';
 
 const Pet = ({id, name, age, breed, species, notes}:PetProps) => {

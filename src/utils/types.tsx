@@ -16,3 +16,8 @@ export interface PetControllerForm {
   showCats: boolean,
   showOther: boolean,
 }
+
+export interface PageProps {
+  title: string;
+  text: string[];
+}
