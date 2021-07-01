@@ -57,10 +57,10 @@ const PetsContainer = () => {
     const target = event.target;
     const value = target.type === 'checkbox' ? target.checked : target.value;
     const name = target.name;
-    setFormData({
-      ...formData,
-      [name]: value,
-    });
+   
+    setFormData((prevData => (
+      {...prevData, 
+        [name]: value,})))
   }
 
   const petsList = pets.length > 0 ? pets.map(pet => 
